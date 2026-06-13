@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-950 text-slate-100 font-sans;
+}
+
+/* Leaflet dark override */
+.leaflet-container { background: #0f172a !important; }
+.leaflet-tile-pane { filter: brightness(0.7) saturate(0.9); }
+.leaflet-control-attribution { display: none; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #1e293b; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+
+/* Alert animations */
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.alert-slide { animation: slideIn 0.3s ease-out; }
+
+/* Risk badge pulse */
+@keyframes riskPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+.risk-critical { animation: riskPulse 2s infinite; }
