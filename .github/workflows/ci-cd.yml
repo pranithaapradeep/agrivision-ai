@@ -139,9 +139,10 @@ jobs:
     name: Deploy to Production
     runs-on: ubuntu-latest
     needs: docker-build
-    if: github.ref == 'refs/heads/main'
-    environment: production
-    continue-on-error: true  # deploy secrets optional; won't fail the pipeline
+    # Only run if DEPLOY_HOST secret is configured — skips cleanly otherwise
+    if: |
+      github.ref == 'refs/heads/main' &&
+      secrets.DEPLOY_HOST != ''
 
     steps:
       - name: Deploy via SSH
